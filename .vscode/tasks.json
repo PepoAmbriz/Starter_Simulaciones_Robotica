@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "WSL: Compile & Run current file",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-lc",
+        "cd \"${workspaceFolder}\" && mkdir -p build && g++ -std=c++17 -O2 -Wall -Wextra \"${file}\" -I./ompl/src -I./pqp/include -I/usr/include/eigen3 -I/usr/include -L./pqp/lib -L/usr/local/lib -L/usr/lib -lPQP -lGL -lGLU -lglfw -lassimp -lompl -o ./build/${fileBasenameNoExtension} && ./build/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "detail": "Compila y ejecuta el archivo activo en WSL usando includes del proyecto y librerías del sistema."
+    }
+  ]
+}
